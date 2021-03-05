@@ -10,8 +10,6 @@ class Screen
         const static int SCREEN_WIDTH = 800;
         const static int SCREEN_HEIGHT = 600;
 
-        virtual ~Screen();
-
     private:
         SDL_Window *m_window;
         SDL_Renderer *m_renderer;
@@ -20,9 +18,12 @@ class Screen
 
     public:
         Screen();
+        virtual ~Screen();
         bool init();
         bool processEvent();
         void close();
+        void update();
+        void setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
 };
 }
 #endif // SCREEN_H

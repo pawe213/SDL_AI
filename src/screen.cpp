@@ -4,9 +4,9 @@ namespace myscreen
 {
 
 Screen::Screen(): m_window(NULL),
-       m_renderer(NULL),
-       m_texture(NULL),
-       m_buffer(NULL)
+                  m_renderer(NULL),
+                  m_texture(NULL),
+                  m_buffer(NULL)
 {
 
 }
@@ -49,11 +49,6 @@ bool Screen::init()
         m_buffer[i] = 0x0000FFFF;
     }
 
-    SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_HEIGHT*sizeof(Uint32));
-    SDL_RenderClear(m_renderer);
-    SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
-    SDL_RenderPresent(m_renderer);
-
     return true;
 
 };
@@ -75,6 +70,29 @@ void Screen::close()
     SDL_DestroyWindow(m_window);
     SDL_Quit();
 };
+
+void Screen::update()
+{
+    SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_HEIGHT*sizeof(Uint32));
+    SDL_RenderClear(m_renderer);
+    SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+    SDL_RenderPresent(m_renderer);
+}
+
+void Screen::setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+    Uint32 color;
+
+    color += red;
+    color <<= 8;
+    color += green;
+    color <<= 8;
+    color += blue;
+    color <<= 8;
+    color += 0xFF;
+    m_buffer[(SCREEN_WIDTH*y) + x] = color;
+
+
+}
 
 
 Screen::~Screen()

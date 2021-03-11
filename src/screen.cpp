@@ -98,6 +98,10 @@ void Screen::setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 
 }
 
+void Screen::clear(){
+    memset(m_buffer, 0, SCREEN_HEIGHT*SCREEN_WIDTH*sizeof(Uint32));
+
+}
 
 Screen::~Screen()
 {

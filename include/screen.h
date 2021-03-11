@@ -24,6 +24,7 @@ class Screen
         void close();
         void update();
         void setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
+        void clear();
 };
 }
 #endif // SCREEN_H

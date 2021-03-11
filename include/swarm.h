@@ -8,7 +8,7 @@ namespace myscreen
 class Swarm
 {
     public:
-        const static int NPARTICLES = 5000;
+        const static int NPARTICLES = 1000;
         Swarm();
         virtual ~Swarm();
 
@@ -18,7 +18,7 @@ class Swarm
         Particle * m_pParticles;
 
     public:
-
+        void update();
         const Particle * const getParticles() {return m_pParticles;};
 };
 }

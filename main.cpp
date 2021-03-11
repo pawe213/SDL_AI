@@ -34,7 +34,8 @@ int main(int argc, char **argv)
     bool quit = false;
     while(true) {
         // Update particles
-
+        screen.clear();
+        swarm.update();
         // Draw particles
         int elapsed = SDL_GetTicks();
         unsigned char green = (1 + cos(elapsed*0.0001)) * 128;

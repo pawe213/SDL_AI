@@ -2,8 +2,7 @@
 #define SWARM_H
 
 #include "particle.h"
-namespace myscreen
-{
+namespace myscreen{
 
 class Swarm
 {
@@ -23,3 +22,4 @@ class Swarm
 };
 }
 #endif // SWARM_H
+

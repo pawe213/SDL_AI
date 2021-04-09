@@ -1,7 +1,5 @@
 #include "screen.h"
-
-namespace myscreen
-{
+namespace myscreen{
 
 Screen::Screen(): m_window(NULL),
                   m_renderer(NULL),
@@ -20,6 +18,8 @@ bool Screen::init()
 
     m_window = SDL_CreateWindow("Fire explosion", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                           SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+
+
 
     if(m_window == NULL) {
         SDL_Quit();
@@ -45,14 +45,10 @@ bool Screen::init()
     m_buffer = new Uint32[SCREEN_HEIGHT*SCREEN_WIDTH];
     memset(m_buffer, 0, SCREEN_HEIGHT*SCREEN_WIDTH*sizeof(Uint32));
 
-    for(int i=0; i<SCREEN_HEIGHT*SCREEN_HEIGHT; i++) {
-        m_buffer[i] = 0x0000FFFF;
-    }
-
     return true;
 
 };
-bool Screen::processEvent()
+bool Screen::processEvents()
 {
     SDL_Event event;
     while(SDL_PollEvent(&event)) {
@@ -71,15 +67,14 @@ void Screen::close()
     SDL_Quit();
 };
 
-void Screen::update()
-{
-    SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_HEIGHT*sizeof(Uint32));
-    SDL_RenderClear(m_renderer);
-    SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
-    SDL_RenderPresent(m_renderer);
-}
 
-void Screen::setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+void Screen::update() {
+	SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
+	SDL_RenderClear(m_renderer);
+	SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+	SDL_RenderPresent(m_renderer);
+}
+void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
     if (x < 0 || x >= SCREEN_WIDTH || y<0 || y>= SCREEN_HEIGHT) {
         return;
     }
@@ -101,10 +96,5 @@ void Screen::setPixels(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 void Screen::clear(){
     memset(m_buffer, 0, SCREEN_HEIGHT*SCREEN_WIDTH*sizeof(Uint32));
 
-}
-
-Screen::~Screen()
-{
-    //dtor
 }
 }

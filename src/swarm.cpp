@@ -1,6 +1,5 @@
 #include "swarm.h"
-namespace myscreen
-{
+namespace myscreen{
 
 Swarm::Swarm()
 {

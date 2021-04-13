@@ -10,10 +10,13 @@ struct Particle
 	double m_speed;
 	double m_direction;
 
+
+
     public:
         Particle();
         virtual ~Particle();
-        void update();
+        void update(int interval);
+        void init();
 
     protected:
 
